@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH --job-name=asv_en
+#SBATCH --mail-type=BEGIN,FAIL,END
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem-per-cpu=16g
+#SBATCH --cpus-per-task=1
+#SBATCH --time=120:00:00
+#SBATCH --account=jayvorn0
+#SBATCH --partition=standard
+#SBATCH --array 1-100
+
+module load R
+
+SEED=$((SLURM_ARRAY_TASK_ID))
+echo = $SEED
+
+make processed_data/asv_en_results_$SEED.Rds

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#SBATCH --job-name=combine_asv_en
+#SBATCH --mail-type=BEGIN,FAIL,END
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem-per-cpu=16g
+#SBATCH --cpus-per-task=16
+#SBATCH --time=120:00:00
+#SBATCH --account=jayvorn0
+#SBATCH --partition=largemem
+
+module load R
+
+make processed_data/asv_en_performance.tsv
+make processed_data/asv_en_feature_importance.tsv
+make processed_data/asv_en_trained_model.tsv
